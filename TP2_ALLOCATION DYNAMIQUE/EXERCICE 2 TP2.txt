@@ -1,0 +1,79 @@
+EXERCICE 2 :
+
+Ecrire la fonction qui alloue la mémoire d'un vecteur de taille dimension .
+
+Ecrire la fonction qui libère la mémoire .
+
+//C
+//VECTEUR
+int *alloue_vecteur( int dimension,int val)
+{
+  int i;
+ int * vecteur=malloc(dimension*sizeof(int));
+ for (i=0;i<dimension;i++)
+{
+  vecteur[i] = val;
+}
+  return vecteur;
+} 
+
+void libere_vecteur(int * vecteur)
+{ 
+  free(vecteur);
+}
+
+
+//MATRICE
+int **alloue_matrice(int l,int c,int val)
+{
+  int i,j;
+  int **matrice = malloc(l+sizeof(int*));
+  for(i=0;i<l;i++)
+  {  
+   matrice[i]=malloc(c+sizeof(int));
+  }
+ for(i=0;i<l;i++)
+  {
+    for(j=0;j<c;i++)
+    { 
+       matrice[i][j]=val; 
+    }
+  }
+return matrice;
+}
+
+void libere_matrice(int ** matrice,int l)
+{
+  for(int i=0;i<l;i++)
+  { 
+   free((int*)matrice[i]);
+  }
+}
+
+
+
+EXERCICE 4:
+FONCTION GENERE UNE MATRICE IDENTITE(diagonal)EN UTILISANT UNE SIMPLE BOUCLE.
+
+int **alloue_matrice_zero(int lignes,int colonnes)
+{
+  int i;
+  int **matrice = calloc(l,sizeof(int *));
+  for(i=0;i<l;i++)
+  {
+   matrice[i] = calloc(c,sizeof(int));
+  }
+return matrice;
+}
+
+int **genre_matrice_identite(int dimension)
+{
+  int i;
+  int ** identite = alloue_matrice_zero(dimension,dimension);
+  for(i=0;i<dimension;i++)
+ {
+   identite[i][i]=1;
+  affiche_matrice(identite,dimension,dimension);
+ }
+return identite;
+}
